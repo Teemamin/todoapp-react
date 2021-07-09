@@ -13,9 +13,15 @@ function TodoForm(props){
 
     }
     return(
-        <Paper>
+        <Paper style={{margin:"1rem 0", padding:"0 1rem"}}>
             <form onSubmit={handleSubmit}>
-                <TextField value={val} onChange={handlevalchange}/>
+                <TextField 
+                    value={val}
+                    onChange={handlevalchange}
+                    margin="normal"
+                    label="Add New Todo"
+                    fullWidth
+                />
             </form>
         </Paper>
     )

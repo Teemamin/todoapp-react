@@ -26,6 +26,7 @@ function TodoApp() {
         backgroundColor : "#fafafa"
     }
     const addTodo = (newTodo)=>{
+        console.log(newTodo)
         settodos([...todos,{id:6,task:newTodo,done:true}])
     }
   return (
@@ -41,9 +42,13 @@ function TodoApp() {
             <Button color="inherit">Login</Button>
         </Toolbar>
     </AppBar>
-     <h1>Todos</h1>
-        <TodoForm addTodo={addTodo}/>
-        <TodoList todos={todos}/>
+        <Grid container justifyContent="center" style={{margin:"1rem 0"}}>
+            <Grid item xs={11} md={8} lg={4}>
+                <h1>Todo Items</h1>
+                <TodoForm addTodo={addTodo}/>
+                <TodoList todos={todos}/>
+            </Grid>
+        </Grid>
     </Paper>
   );
 }
