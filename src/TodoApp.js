@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { v4 as uuidv4 } from 'uuid';
 
 function TodoApp() {
     const initialTodos = [
@@ -26,8 +27,25 @@ function TodoApp() {
         backgroundColor : "#fafafa"
     }
     const addTodo = (newTodo)=>{
-        console.log(newTodo)
-        settodos([...todos,{id:6,task:newTodo,done:true}])
+        settodos([...todos,newTodo])
+    }
+    const handleDelete = (id)=>{
+        let updatedTodo = todos.filter(todo=>todo.id != id)
+        settodos(updatedTodo)
+    }
+    const toggleTodos = (id)=>{
+        let updatedTodo = todos.map(todo=>{
+            if(todo.id === id){
+               return {...todo,done:!todo.done}
+            }
+            return todo
+        })
+        settodos(updatedTodo)
+    }
+    const editTodo =(id,newTask)=>{
+        let updated = todos.map(todo=>todo.id === id? {...todo,task:newTask}:todo)
+        settodos(updated)
+
     }
   return (
     <Paper style={style}>
@@ -46,7 +64,10 @@ function TodoApp() {
             <Grid item xs={11} md={8} lg={4}>
                 <h1>Todo Items</h1>
                 <TodoForm addTodo={addTodo}/>
-                <TodoList todos={todos}/>
+                <TodoList todos={todos} handleDelete={handleDelete} 
+                    toggleTodos={toggleTodos}
+                    editTodo={editTodo}
+                />
             </Grid>
         </Grid>
     </Paper>

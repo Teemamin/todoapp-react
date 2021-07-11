@@ -17,7 +17,13 @@ function TodoList(props){
             <List>
                 {props.todos.map(itm=>
                         <>
-                                <Todo task={itm.task} todo={itm} key={itm.id}/>
+                                <Todo task={itm.task}
+                                 todo={itm}
+                                 key={itm.id}
+                                 handleDelete={props.handleDelete}
+                                 toggleTodos={props.toggleTodos}
+                                 editTodo={props.editTodo}
+                                />
                           
                             <Divider/>
                         </>
