@@ -33,12 +33,12 @@ function TodoForm(props){
                     label="Add New Todo"
                     fullWidth
                 />
-                <Checkbox
+                {/* <Checkbox
                     checked={done}
                     onChange={handleChange}
                     name="done"
                     color="primary"
-                />
+                /> */}
             </form>
         </Paper>
     )
