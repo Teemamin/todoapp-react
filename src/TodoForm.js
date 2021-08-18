@@ -1,13 +1,15 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import useInputState from "./hooks/useInputState";
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { v4 as uuidv4 } from 'uuid';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import { TodosContext } from "./contexts/todos.context";
 function TodoForm(props){
     const [val,handlevalchange,resetval] = useInputState("")
     const [done,setdone] = useState(true)
+    const {addTodo} = useContext(TodosContext)
+
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -16,7 +18,7 @@ function TodoForm(props){
             task: val,
             done : done
         }
-        props.addTodo(data)
+        addTodo(data)
         resetval()
 
     }
