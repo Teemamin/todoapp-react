@@ -16,12 +16,12 @@ import { TodosContext } from "./contexts/todos.context";
 
 function Todo(props){
     const [isEditting,toggle] = useToggle(false)
-    const {handleDelete,toggleTodos} = useContext(TodosContext);
+    const {dispatch} = useContext(TodosContext);
     let style ={
         textDecoration: props.todo.done ? "line-through" : "none"
     }
    const deleteTodo = ()=>{
-        handleDelete(props.todo.id)
+        dispatch({type: "REMOVE", id:props.todo.id})
     }
     const toggleIsEditting = ()=>{
         toggle()
@@ -34,7 +34,7 @@ function Todo(props){
                 toggleIsEditting={toggleIsEditting}
             /> : 
             <>
-            <Checkbox checked={props.todo.done} onClick={()=>toggleTodos(props.todo.id)}/>
+            <Checkbox checked={props.todo.done} onClick={()=>dispatch({type:"TOGGLE", id:props.todo.id})}/>
             <ListItemtext style={style}>{props.task}</ListItemtext> 
             <ListItemSecondaryAction>
                 <IconButton onClick={deleteTodo}>

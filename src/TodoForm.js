@@ -8,7 +8,7 @@ import { TodosContext } from "./contexts/todos.context";
 function TodoForm(props){
     const [val,handlevalchange,resetval] = useInputState("")
     const [done,setdone] = useState(true)
-    const {addTodo} = useContext(TodosContext)
+    const {dispatch} = useContext(TodosContext)
 
 
     const handleSubmit = (e)=>{
@@ -18,7 +18,7 @@ function TodoForm(props){
             task: val,
             done : done
         }
-        addTodo(data)
+        dispatch({type:"ADD", task:data})
         resetval()
 
     }

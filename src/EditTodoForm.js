@@ -7,10 +7,10 @@ import { TodosContext } from "./contexts/todos.context";
 
 function EditTodoForm(props){
     const [val,handlevalchange,resetval] = useInputState(props.task)
-    const {editTodo} = useContext(TodosContext);
+    const {dispatch} = useContext(TodosContext);
     const handleSubmit = (e)=>{
         e.preventDefault()
-        editTodo(props.id,val)
+        dispatch({type:"EDIT",id:props.id, newTask:val})
         resetval();
         props.toggleIsEditting()
     }
